@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\Factory;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class TestCase extends OrchestraTestCase
 {
@@ -18,16 +19,16 @@ class TestCase extends OrchestraTestCase
         ]);
     }
 
-    public function getMockForTrait(
+    protected function getMockForTrait(
         $traitName,
-        array $arguments = array(),
+        array $arguments = [],
         $mockClassName = '',
         $callOriginalConstructor = true,
         $callOriginalClone = true,
         $callAutoload = true,
-        $mockedMethods = array(),
+        $mockedMethods = [],
         $cloneArguments = false
-    ) {
+    ): MockObject {
         $mock = parent::getMockForTrait($traitName, $arguments, $mockClassName, $callOriginalConstructor,
             $callOriginalClone, $callAutoload, $mockedMethods, $cloneArguments);
 
